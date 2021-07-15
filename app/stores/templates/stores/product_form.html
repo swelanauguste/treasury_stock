@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add Product
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="display-4">Add Products</h1>
+    <hr>
+
+    <div class="card" style="max-width: 36rem;">
+        <div class="card-body">
+            <div class="card-title text-center">New</div>
+            <hr>
+            <div class="col-sm-12 col-md-12">
+                {{form|crispy}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
