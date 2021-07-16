@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{object.name}}
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container my-5">
+
+    <div class="card"
+        style="max-width: 36rem;">
+        <div class="card-header text-center">
+            {{object.name|title}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{object.category}}</p>
+          <p class="card-text">{{object.supplier}}</p>
+          <p class="card-text">{{object.description}}</p>
+          <p class="card-text">{{object.qty}}</p>
+        </div>
+        <div class="card-footer bg-transparent border">
+            <a href="{{object.get_update_url}}">edit</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

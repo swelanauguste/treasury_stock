@@ -7,9 +7,27 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .forms import ProductForm
+from .forms import ProductForm, ProductUpdateForm, SupplierForm, SupplierUpdateForm
 
-from .models import Product
+from .models import Product, Supplier
+
+
+class SupplierCreate(CreateView):
+    model = Supplier
+    form_class = SupplierForm
+
+
+class SupplierUpdate(UpdateView):
+    model = Supplier
+    form_class = SupplierUpdateForm
+
+
+class SupplierList(ListView):
+    model = Supplier
+
+
+class SupplierDetail(DetailView):
+    model = Supplier
 
 
 class ProductCreate(CreateView):
@@ -27,7 +45,7 @@ class ProductDetail(DetailView):
 
 class ProductUpdate(UpdateView):
     model = Product
-    fields = "__all__"
+    form_class = ProductUpdateForm
 
 
 class IndexView(TemplateView):
