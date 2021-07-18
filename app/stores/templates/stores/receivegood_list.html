@@ -2,45 +2,49 @@
 
 
 {% block title %}
-Products
+Orders
 {% endblock title %}
 
 
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="display-4">Products</h1>
+    <h1 class="display-4">Orders</h1>
     <hr>
     <a class="btn btn-dark my-5"
-        href="{% url 'stores:product-create' %}">add product</a>
+        href="{% url 'stores:order-create' %}">add order</a>
     <div class="table-responsive">
-        <table class="table table-hover text-center">
+        <table class="table table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Received</th>
                     <th scope="col">Item</th>
                     <th scope="col">Supplier</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Purchase Order Number</th>
                 </tr>
             </thead>
             <tbody>
 
                 {% for object in object_list %}
                 <tr>
+                <td>{{object.received_date}}</td>
                     <td>
                         <a href="{{ object.get_absolute_url }}">
-                            {{object.name}}
+                            {{object.product}}
                         </a>
                     </td>
                     <td>
                         <a href="{{object.supplier.get_absolute_url}}">
-                            {{object.supplier}}
+                            {{object.product.supplier}}
                         </a>
                     </td>
-                    <td>{{object.get_total_quantity}}</td>
+                    <td>{{object.qty}}</td>
+                    <td>{{object.purchase_order|default:"--"}}</td>
                 </tr>
                 {% empty %}
                 <td class="text-center"
-                    colspan="3">No Products</td>
+                    colspan="4">No Orders</td>
                 {% endfor %}
 
             </tbody>

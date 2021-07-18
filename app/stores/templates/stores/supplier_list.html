@@ -2,24 +2,25 @@
 
 
 {% block title %}
-Products
+Suppliers
 {% endblock title %}
 
 
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="display-4">Products</h1>
+    <h1 class="display-4">Suppliers</h1>
     <hr>
     <a class="btn btn-dark my-5"
-        href="{% url 'stores:product-create' %}">add product</a>
+        href="{% url 'stores:supplier-create' %}">add supplier</a>
     <div class="table-responsive">
-        <table class="table table-hover text-center">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Item</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">website</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,16 +32,17 @@ Products
                             {{object.name}}
                         </a>
                     </td>
+                    <td>{{object.email}} </td>
+                    <td>{{object.phone}}</td>
                     <td>
-                        <a href="{{object.supplier.get_absolute_url}}">
-                            {{object.supplier}}
+                        <a target="_blank" href="{{object.website}}">
+                            {{object.website}}
                         </a>
                     </td>
-                    <td>{{object.get_total_quantity}}</td>
                 </tr>
                 {% empty %}
                 <td class="text-center"
-                    colspan="3">No Products</td>
+                    colspan="4">No Products</td>
                 {% endfor %}
 
             </tbody>

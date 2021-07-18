@@ -1,25 +1,76 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.views.generic import (
-    TemplateView,
+    CreateView,
     DetailView,
     ListView,
-    CreateView,
+    TemplateView,
     UpdateView,
 )
 
-from .forms import ProductForm, ProductUpdateForm, SupplierForm, SupplierUpdateForm
+from .forms import (
+    DeliveryGoodCreateForm,
+    ProductForm,
+    ProductUpdateForm,
+    ReceiveGoodCreateForm,
+    ReceiveGoodUpdateForm,
+    SupplierForm,
+    SupplierUpdateForm,
+    DeliveryGoodUpdateForm,
+)
+from .models import DeliveryGood, Product, ReceiveGood, Supplier
 
-from .models import Product, Supplier
+
+class DeliveryGoodDetailView(DetailView):
+    model = DeliveryGood
 
 
-class SupplierCreate(CreateView):
+class DeliveryGoodListView(ListView):
+    model = DeliveryGood
+
+
+class DeliveryGoodCreateView(SuccessMessageMixin, CreateView):
+    model = DeliveryGood
+    form_class = DeliveryGoodCreateForm
+    success_message = "%(product)s was created successfully"
+
+
+class DeliveryGoodUpdateView(SuccessMessageMixin, UpdateView):
+    model = DeliveryGood
+    form_class = DeliveryGoodUpdateForm
+    success_message = "%(product)s was updated successfully"
+
+
+class ReceiveGoodDetailView(DetailView):
+    model = ReceiveGood
+
+
+class ReceiveGoodListView(ListView):
+    model = ReceiveGood
+
+
+class ReceiveGoodCreateView(SuccessMessageMixin, CreateView):
+    model = ReceiveGood
+    form_class = ReceiveGoodCreateForm
+    success_message = "%(product)s was created successfully"
+
+
+class ReceiveGoodUpdateView(SuccessMessageMixin, UpdateView):
+    model = ReceiveGood
+    form_class = ReceiveGoodUpdateForm
+    success_message = "%(product)s was updated successfully"
+
+
+class SupplierCreate(SuccessMessageMixin, CreateView):
     model = Supplier
     form_class = SupplierForm
+    success_message = "%(product)s was created successfully"
 
 
-class SupplierUpdate(UpdateView):
+class SupplierUpdate(SuccessMessageMixin, UpdateView):
     model = Supplier
     form_class = SupplierUpdateForm
+    success_message = "%(product)s was updated successfully"
 
 
 class SupplierList(ListView):
@@ -30,9 +81,10 @@ class SupplierDetail(DetailView):
     model = Supplier
 
 
-class ProductCreate(CreateView):
+class ProductCreate(SuccessMessageMixin, CreateView):
     model = Product
     form_class = ProductForm
+    success_message = "%(product)s was created successfully"
 
 
 class ProductList(ListView):
@@ -43,9 +95,10 @@ class ProductDetail(DetailView):
     model = Product
 
 
-class ProductUpdate(UpdateView):
+class ProductUpdate(SuccessMessageMixin, UpdateView):
     model = Product
     form_class = ProductUpdateForm
+    success_message = "%(product)s was updated successfully"
 
 
 class IndexView(TemplateView):

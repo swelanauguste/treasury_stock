@@ -5,13 +5,7 @@
                 class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/"
                     class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                    <svg class="bi me-2"
-                        width="40"
-                        height="32"
-                        role="img"
-                        aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
+                    <h1 class="fs-1">Treasury</h1>
                 </a>
 
                 <ul
@@ -19,19 +13,13 @@
                     <li>
                         <a href="#"
                             class="nav-link text-white">
-                            Home
+                            Employees
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{% url 'stores:supplier-list' %}"
                             class="nav-link text-white">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="nav-link text-white">
-                            Orders
+                            Suppliers
                         </a>
                     </li>
                     <li>
@@ -40,10 +28,17 @@
                             Products
                         </a>
                     </li>
+
                     <li>
-                        <a href="#"
+                        <a href="{% url 'stores:order-list' %}"
                             class="nav-link text-white">
-                                Employees
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'stores:delivery-list' %}"
+                            class="nav-link text-white">
+                            Deliveries
                         </a>
                     </li>
                 </ul>
@@ -59,12 +54,23 @@
                     aria-label="Search">
             </form>
 
+            {% if user.is_authenticated %}
             <div class="text-end">
-                <button type="button"
-                    class="btn btn-light text-dark me-2">Login</button>
-                <button type="button"
-                    class="btn btn-primary">Sign-up</button>
+                <a href=""
+                    class="btn btn-sm btn-dark">Profile</a>
+                <a href="{% url 'account_logout' %}"
+                    class="btn btn-sm btn-outline-dark me-2">Logout</a>
             </div>
+            {% else %}
+            <div class="text-end">
+                <a href="{% url 'account_login' %}"
+                    class="btn btn-dark me-2">Login</a>
+                <a href="{% url 'account_signup' %}"
+                    class="btn btn-outline-dark">Sign-up</a>
+            </div>
+            {% endif %}
+
+
         </div>
     </div>
 </header>

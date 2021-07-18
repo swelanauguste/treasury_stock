@@ -11,7 +11,7 @@
 {% block content %}
 <div class="container my-5">
 
-    <div class="card"
+    <div class="card shadow-lg"
         style="max-width: 36rem;">
         <div class="card-header text-center">
             {{object.name|title}}
@@ -20,7 +20,7 @@
           <p class="card-text">{{object.category}}</p>
           <p class="card-text">{{object.supplier}}</p>
           <p class="card-text">{{object.description}}</p>
-          <p class="card-text">{{object.qty}}</p>
+          <p class="card-text">{{object.get_total_quantity}}</p>
         </div>
         <div class="card-footer bg-transparent border">
             <a href="{{object.get_update_url}}">edit</a>
